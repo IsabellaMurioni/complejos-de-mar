@@ -14,7 +14,7 @@ import {
 import { motion } from 'framer-motion'
 import { AnimatedSection, StaggerContainer, StaggerItem } from '@/components/motion'
 
-const containerVariants = {
+const containerVariants: Record<string, any> = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -25,7 +25,7 @@ const containerVariants = {
   }
 }
 
-const itemVariants = {
+const itemVariants: Record<string, any> = {
   hidden: { opacity: 0, y: 30 },
   visible: { 
     opacity: 1, 
