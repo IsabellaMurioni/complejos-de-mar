@@ -1,10 +1,10 @@
 'use client'
 
-import { motion, useInView, type Variants } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { useRef, type ReactNode } from 'react'
 
 // Animation variants
-export const fadeInUp: Variants = {
+export const fadeInUp: Record<string, any> = {
   hidden: { opacity: 0, y: 30 },
   visible: { 
     opacity: 1, 
@@ -13,7 +13,7 @@ export const fadeInUp: Variants = {
   }
 }
 
-export const fadeInDown: Variants = {
+export const fadeInDown: Record<string, any> = {
   hidden: { opacity: 0, y: -30 },
   visible: { 
     opacity: 1, 
@@ -22,7 +22,7 @@ export const fadeInDown: Variants = {
   }
 }
 
-export const fadeIn: Variants = {
+export const fadeIn: Record<string, any> = {
   hidden: { opacity: 0 },
   visible: { 
     opacity: 1,
@@ -30,7 +30,7 @@ export const fadeIn: Variants = {
   }
 }
 
-export const scaleIn: Variants = {
+export const scaleIn: Record<string, any> = {
   hidden: { opacity: 0, scale: 0.9 },
   visible: { 
     opacity: 1, 
@@ -39,7 +39,7 @@ export const scaleIn: Variants = {
   }
 }
 
-export const slideInLeft: Variants = {
+export const slideInLeft: Record<string, any> = {
   hidden: { opacity: 0, x: -50 },
   visible: { 
     opacity: 1, 
@@ -48,7 +48,7 @@ export const slideInLeft: Variants = {
   }
 }
 
-export const slideInRight: Variants = {
+export const slideInRight: Record<string, any> = {
   hidden: { opacity: 0, x: 50 },
   visible: { 
     opacity: 1, 
@@ -57,7 +57,7 @@ export const slideInRight: Variants = {
   }
 }
 
-export const staggerContainer: Variants = {
+export const staggerContainer: Record<string, any> = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -68,7 +68,7 @@ export const staggerContainer: Variants = {
   }
 }
 
-export const staggerItem: Variants = {
+export const staggerItem: Record<string, any> = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
@@ -80,7 +80,7 @@ export const staggerItem: Variants = {
 interface AnimatedSectionProps {
   children: ReactNode
   className?: string
-  variants?: Variants
+  variants?: Record<string, any>
   delay?: number
 }
 
@@ -174,7 +174,7 @@ export function PageTransition({ children }: PageTransitionProps) {
 }
 
 // Navbar animation
-export const navbarVariants: Variants = {
+export const navbarVariants: Record<string, any> = {
   hidden: { opacity: 0, y: -20 },
   visible: { 
     opacity: 1, 
@@ -184,7 +184,7 @@ export const navbarVariants: Variants = {
 }
 
 // Hero text animation
-export const heroTextVariants: Variants = {
+export const heroTextVariants: Record<string, any> = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -195,7 +195,7 @@ export const heroTextVariants: Variants = {
   }
 }
 
-export const heroItemVariants: Variants = {
+export const heroItemVariants: Record<string, any> = {
   hidden: { opacity: 0, y: 40 },
   visible: { 
     opacity: 1, 

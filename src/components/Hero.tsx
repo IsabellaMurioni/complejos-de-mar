@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button'
 import { ArrowRight, MapPin, Star, Users } from 'lucide-react'
 import { motion } from 'framer-motion'
 
-const containerVariants = {
+const containerVariants: Record<string, any> = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -13,7 +13,7 @@ const containerVariants = {
   }
 }
 
-const itemVariants = {
+const itemVariants: Record<string, any> = {
   hidden: { opacity: 0, y: 40 },
   visible: { 
     opacity: 1, 
@@ -22,7 +22,7 @@ const itemVariants = {
   }
 }
 
-const statsVariants = {
+const statsVariants: Record<string, any> = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -33,7 +33,7 @@ const statsVariants = {
   }
 }
 
-const statItemVariants = {
+const statItemVariants: Record<string, any> = {
   hidden: { opacity: 0, y: 20, scale: 0.9 },
   visible: { 
     opacity: 1, 
