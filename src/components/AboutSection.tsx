@@ -1,4 +1,8 @@
 import { Sun, Umbrella, Heart } from 'lucide-react'
+import pic1 from '@/assets/pics/1.jpg'
+import pic2 from '@/assets/pics/2.jpg'
+import pic3 from '@/assets/pics/3.jpg'
+import pic4 from '@/assets/pics/4.jpg'
 import { motion } from 'framer-motion'
 import { AnimatedSection, StaggerContainer, StaggerItem } from '@/components/motion'
 
@@ -22,20 +26,20 @@ const features = [
 
 export function AboutSection() {
   return (
-    <section className="py-16 sm:py-24 bg-gradient-to-b from-background to-sand/30">
+    <section className="py-16 sm:py-24 bg-linear-to-b from-background to-sand/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid lg:grid-cols-2 gap-10 sm:gap-16 items-center">
           {/* Images Grid */}
           <StaggerContainer className="grid grid-cols-2 gap-3 sm:gap-4" delay={0.2}>
             <div className="space-y-3 sm:space-y-4">
               <StaggerItem>
-                <motion.div 
-                  className="aspect-[4/5] rounded-2xl bg-gradient-to-br from-primary/20 to-turquoise/20 overflow-hidden"
+                <motion.div
+                  className="aspect-4/5 rounded-2xl bg-ocean-light/20 overflow-hidden"
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
                   <motion.img
-                    src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=800&q=80"
+                    src={pic1}
                     alt="Cabaña frente al mar"
                     className="w-full h-full object-cover"
                     whileHover={{ scale: 1.08 }}
@@ -44,13 +48,13 @@ export function AboutSection() {
                 </motion.div>
               </StaggerItem>
               <StaggerItem>
-                <motion.div 
-                  className="aspect-square rounded-2xl bg-gradient-to-br from-sun-gold/20 to-sand overflow-hidden"
+                <motion.div
+                  className="aspect-square rounded-2xl bg-sand/60 overflow-hidden"
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
                   <motion.img
-                    src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80"
+                    src={pic2}
                     alt="Piscina del complejo"
                     className="w-full h-full object-cover"
                     whileHover={{ scale: 1.08 }}
@@ -61,13 +65,13 @@ export function AboutSection() {
             </div>
             <div className="pt-6 sm:pt-8 space-y-3 sm:space-y-4">
               <StaggerItem>
-                <motion.div 
-                  className="aspect-square rounded-2xl bg-gradient-to-br from-ocean-light to-primary/20 overflow-hidden"
+                <motion.div
+                  className="aspect-square rounded-2xl bg-turquoise/20 overflow-hidden"
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
                   <motion.img
-                    src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80"
+                    src={pic3}
                     alt="Playa"
                     className="w-full h-full object-cover"
                     whileHover={{ scale: 1.08 }}
@@ -76,13 +80,13 @@ export function AboutSection() {
                 </motion.div>
               </StaggerItem>
               <StaggerItem>
-                <motion.div 
-                  className="aspect-[4/5] rounded-2xl bg-gradient-to-br from-turquoise/30 to-ocean-light/20 overflow-hidden"
+                <motion.div
+                  className="aspect-4/5 rounded-2xl bg-sand/40 overflow-hidden"
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
                   <motion.img
-                    src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80"
+                    src={pic4}
                     alt="Interior de cabaña"
                     className="w-full h-full object-cover"
                     whileHover={{ scale: 1.08 }}
@@ -122,14 +126,14 @@ export function AboutSection() {
                     transition={{ duration: 0.2 }}
                   >
                     <motion.div 
-                      className="flex-shrink-0 w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-primary/10 flex items-center justify-center"
+                      className="shrink-0 w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-primary/10 flex items-center justify-center"
                       whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.2 }}
                     >
                       <feature.icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                     </motion.div>
                     <div>
-                      <h3 className="font-semibold text-foreground">{feature.title}</h3>
+                      <h3 className="font-semibold text-primary">{feature.title}</h3>
                       <p className="text-sm sm:text-base text-muted-foreground mt-0.5">{feature.description}</p>
                     </div>
                   </motion.div>

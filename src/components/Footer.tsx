@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Waves, Instagram, Mail, MessageCircle } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+const idigitalLogo = '/idigital-build.png'
 
 const footerLinks = {
   cabanas: [
@@ -50,20 +51,17 @@ const containerVariants: Record<string, any> = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2
-    }
-  }
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+  },
 }
 
 const itemVariants: Record<string, any> = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }
-  }
+    transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] },
+  },
 }
 
 interface SocialButtonProps {
@@ -76,22 +74,22 @@ function SocialButton({ icon: Icon, label, links }: SocialButtonProps) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div 
+    <div
       className="relative"
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
       <motion.button
-        className="w-10 h-10 rounded-xl bg-background/10 flex items-center justify-center hover:bg-background/20 transition-colors"
+        className="w-9 h-9 rounded-lg border border-white/15 flex items-center justify-center text-white/55 hover:text-white hover:border-white/35 hover:bg-white/5 transition-all duration-200"
         aria-label={label}
         onClick={() => setIsOpen(!isOpen)}
-        whileHover={{ scale: 1.1, y: -2 }}
+        whileHover={{ scale: 1.08, y: -1 }}
         whileTap={{ scale: 0.95 }}
         transition={{ duration: 0.2 }}
       >
-        <Icon className="w-5 h-5" />
+        <Icon className="w-4 h-4" />
       </motion.button>
-      
+
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -126,62 +124,49 @@ function SocialButton({ icon: Icon, label, links }: SocialButtonProps) {
 
 export function Footer() {
   return (
-    <footer className="bg-foreground text-background">
-      <motion.div 
-        className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-50px' }}
-      >
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
+    <footer className="bg-navy-deep text-white">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+
+        {/* Main content grid */}
+        <motion.div
+          className="pt-14 sm:pt-16 pb-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 xl:gap-12"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-50px' }}
+        >
           {/* Brand */}
-          <motion.div className="col-span-2 sm:col-span-2 lg:col-span-1" variants={itemVariants}>
-            <a href="#inicio" className="flex items-center gap-2">
-              <motion.div 
-                className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary"
-                whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Waves className="w-5 h-5 text-primary-foreground" />
+          <motion.div className="sm:col-span-2 lg:col-span-1" variants={itemVariants}>
+            <a href="#inicio" className="inline-flex items-center gap-2.5">
+              <motion.div whileHover={{ scale: 1.08 }} transition={{ duration: 0.2 }}>
+                <Waves className="w-6 h-6 text-white" />
               </motion.div>
-              <span className="text-xl font-bold">Complejos de Mar</span>
+              <span className="text-base font-bold text-white tracking-tight">Complejos de Mar</span>
             </a>
-            <p className="mt-4 text-background/70 text-sm leading-relaxed max-w-xs">
-              Tu destino para unas vacaciones inolvidables en la costa argentina. 
+            <p className="mt-4 text-sm text-white/50 leading-relaxed max-w-68">
+              Tu destino para unas vacaciones inolvidables en la costa argentina.
               Cabañas premium con todas las comodidades.
             </p>
-            {/* Social Links with Dropdowns */}
-            <div className="flex gap-3 mt-6">
-              <SocialButton 
-                icon={MessageCircle} 
-                label="WhatsApp" 
-                links={socialLinks.whatsapp} 
-              />
-              <SocialButton 
-                icon={Instagram} 
-                label="Instagram" 
-                links={socialLinks.instagram} 
-              />
-              <SocialButton 
-                icon={Mail} 
-                label="Email" 
-                links={socialLinks.email} 
-              />
+            <div className="flex gap-2 mt-6">
+              <SocialButton icon={MessageCircle} label="WhatsApp" links={socialLinks.whatsapp} />
+              <SocialButton icon={Instagram} label="Instagram" links={socialLinks.instagram} />
+              <SocialButton icon={Mail} label="Email" links={socialLinks.email} />
             </div>
           </motion.div>
 
           {/* Cabañas */}
           <motion.div variants={itemVariants}>
-            <h4 className="font-semibold text-base sm:text-lg mb-4">Cabañas</h4>
-            <ul className="space-y-2.5 sm:space-y-3">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.13em] text-white/35 mb-5">
+              Cabañas
+            </p>
+            <ul className="space-y-3">
               {footerLinks.cabanas.map((link) => (
                 <li key={link.label}>
                   <motion.a
                     href={link.href}
-                    className="text-background/70 hover:text-background transition-colors text-sm"
-                    whileHover={{ x: 4 }}
-                    transition={{ duration: 0.2 }}
+                    className="text-sm text-white/58 hover:text-white transition-colors duration-200"
+                    whileHover={{ x: 3 }}
+                    transition={{ duration: 0.15 }}
                   >
                     {link.label}
                   </motion.a>
@@ -192,54 +177,67 @@ export function Footer() {
 
           {/* Información */}
           <motion.div variants={itemVariants}>
-            <h4 className="font-semibold text-base sm:text-lg mb-4">Información</h4>
-            <ul className="space-y-2.5 sm:space-y-3">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.13em] text-white/35 mb-5">
+              Información
+            </p>
+            <ul className="space-y-3">
               {footerLinks.informacion.map((link) => (
                 <li key={link.label}>
                   <motion.a
                     href={link.href}
-                    className="text-background/70 hover:text-background transition-colors text-sm"
-                    whileHover={{ x: 4 }}
-                    transition={{ duration: 0.2 }}
+                    className="text-sm text-white/58 hover:text-white transition-colors duration-200"
+                    whileHover={{ x: 3 }}
+                    transition={{ duration: 0.15 }}
                   >
                     {link.label}
                   </motion.a>
                 </li>
               ))}
-              <li className="pt-3 sm:pt-4">
-                <h4 className="font-semibold text-base sm:text-lg mb-3 sm:mb-4">Contacto</h4>
-                <ul className="space-y-2.5 sm:space-y-3">
-                  {footerLinks.contacto.map((link) => (
-                    <li key={link.label}>
-                      <motion.a
-                        href={link.href}
-                        className="text-background/70 hover:text-background transition-colors text-sm break-all sm:break-normal"
-                        whileHover={{ x: 4 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        {link.label}
-                      </motion.a>
-                    </li>
-                  ))}
-                </ul>
-              </li>
             </ul>
           </motion.div>
-        </div>
 
-        {/* Bottom Bar */}
-        <motion.div 
-          className="mt-10 sm:mt-16 pt-6 sm:pt-8 border-t border-background/10 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4"
-          variants={itemVariants}
-        >
-          <p className="text-background/50 text-xs sm:text-sm text-center sm:text-left">
+          {/* Contacto */}
+          <motion.div variants={itemVariants}>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.13em] text-white/35 mb-5">
+              Contacto
+            </p>
+            <ul className="space-y-3">
+              {footerLinks.contacto.map((link) => (
+                <li key={link.label}>
+                  <motion.a
+                    href={link.href}
+                    className="text-sm text-white/58 hover:text-white transition-colors duration-200 break-all sm:break-normal"
+                    whileHover={{ x: 3 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    {link.label}
+                  </motion.a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </motion.div>
+
+        {/* Divider */}
+        <div className="border-t border-white/10" />
+
+        {/* Bottom bar */}
+        <div className="py-5 flex items-center justify-between">
+          <p className="text-xs text-white/35 leading-none">
             &copy; {new Date().getFullYear()} Complejos de Mar. Todos los derechos reservados.
           </p>
-          <p className="text-background/50 text-xs sm:text-sm">
-            Hecho con amor en la Costa Atlántica
-          </p>
-        </motion.div>
-      </motion.div>
+          <div className="flex items-center gap-1">
+            <span className="text-xs text-white/35 leading-none">Developed and designed by</span>
+            <img
+              src={idigitalLogo}
+              alt="idigital.build"
+              className="h-23 w-auto object-contain block"
+              style={{ filter: 'grayscale(1) invert(1) brightness(15)', opacity: 0.9 }}
+            />
+          </div>
+        </div>
+
+      </div>
     </footer>
   )
 }

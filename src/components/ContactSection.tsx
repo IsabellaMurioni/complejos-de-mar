@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -15,11 +16,16 @@ import { motion } from 'framer-motion'
 import { AnimatedSection, StaggerContainer, StaggerItem } from '@/components/motion'
 
 const cabins = [
-  { value: 'mimmo', label: 'Mimmo II' },
-  { value: 'amigos', label: 'Los Amigos' },
-  { value: 'azahar', label: 'Azahar' },
-  { value: 'vip', label: 'Cabañas VIP' },
-  { value: 'chacras', label: 'Chacras del Mar' },
+  { value: 'mimmo', label: 'Mimmo II', name: 'Mimmo' },
+  { value: 'amigos', label: 'Los Amigos', name: 'Los Amigos' },
+  { value: 'azahar', label: 'Azahar', name: 'Azahar' },
+  { value: 'vip', label: 'Cabañas VIP', name: 'Cabañas VIP' },
+  { value: 'chacras', label: 'Chacras del Mar', name: 'Chacras del Mar' },
+]
+
+const personasOptions = [
+  ...Array.from({ length: 8 }, (_, i) => ({ value: String(i + 1), label: String(i + 1) })),
+  { value: '9+', label: '9 o más' },
 ]
 
 const contactInfo = [
@@ -42,6 +48,20 @@ const contactInfo = [
 
 export function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [selectedCabin, setSelectedCabin] = useState('')
+  const [selectedPersonas, setSelectedPersonas] = useState('')
+  const [searchParams] = useSearchParams()
+
+  useEffect(() => {
+    const complejo = searchParams.get('complejo')
+    if (complejo) {
+      const match = cabins.find(c => c.name === complejo)
+      if (match) setSelectedCabin(match.value)
+      setTimeout(() => {
+        document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' })
+      }, 100)
+    }
+  }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -70,7 +90,7 @@ export function ContactSection() {
             </AnimatedSection>
             <AnimatedSection delay={0.2}>
               <p className="mt-4 sm:mt-6 text-base sm:text-lg text-muted-foreground leading-relaxed">
-                Estamos para ayudarte a planificar la escapada perfecta. 
+                Estamos para ayudarte a planificar la escapada perfecta.
                 Contactanos y te asesoramos sobre la mejor opción para vos.
               </p>
             </AnimatedSection>
@@ -78,13 +98,13 @@ export function ContactSection() {
             <StaggerContainer className="mt-8 sm:mt-10 space-y-5 sm:space-y-6" delay={0.3}>
               {contactInfo.map((info) => (
                 <StaggerItem key={info.label}>
-                  <motion.div 
+                  <motion.div
                     className="flex items-center gap-4"
                     whileHover={{ x: 8 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <motion.div 
-                      className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0"
+                    <motion.div
+                      className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0"
                       whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.2 }}
                     >
@@ -102,7 +122,7 @@ export function ContactSection() {
 
           {/* Contact Form */}
           <AnimatedSection delay={0.2}>
-            <motion.div 
+            <motion.div
               className="bg-card rounded-2xl sm:rounded-3xl border border-border/50 p-5 sm:p-8 shadow-lg"
               whileHover={{ boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15)' }}
               transition={{ duration: 0.3 }}
@@ -145,7 +165,7 @@ export function ContactSection() {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="cabin">Complejo de Interés</Label>
-                    <Select>
+                    <Select value={selectedCabin} onValueChange={setSelectedCabin}>
                       <SelectTrigger className="w-full rounded-xl">
                         <SelectValue placeholder="Seleccionar..." />
                       </SelectTrigger>
@@ -157,6 +177,41 @@ export function ContactSection() {
                         ))}
                       </SelectContent>
                     </Select>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="personas">Cantidad de personas</Label>
+                  <Select value={selectedPersonas} onValueChange={setSelectedPersonas}>
+                    <SelectTrigger className="w-full rounded-xl">
+                      <SelectValue placeholder="Seleccionar..." />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {personasOptions.map((opt) => (
+                        <SelectItem key={opt.value} value={opt.value}>
+                          {opt.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="fechaLlegada">Fecha de llegada</Label>
+                    <Input
+                      id="fechaLlegada"
+                      type="date"
+                      className="rounded-xl"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="fechaSalida">Fecha de salida</Label>
+                    <Input
+                      id="fechaSalida"
+                      type="date"
+                      className="rounded-xl"
+                    />
                   </div>
                 </div>
 
@@ -178,7 +233,7 @@ export function ContactSection() {
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full rounded-xl"
+                    className="w-full"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? 'Enviando...' : 'Enviar Consulta'}

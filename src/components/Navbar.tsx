@@ -9,7 +9,6 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [cabinDropdownOpen, setCabinDropdownOpen] = useState(false)
   const [mobileCabinOpen, setMobileCabinOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const navigate = useNavigate()
 
@@ -23,11 +22,6 @@ export function Navbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -52,25 +46,24 @@ export function Navbar() {
     }
   }
 
+  const linkClass = 'text-sm font-medium text-black/75 hover:text-black transition-colors'
+
   return (
-    <motion.header 
+    <motion.header
       className="fixed top-0 left-0 right-0 z-50"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
     >
       <div className="mx-3 sm:mx-4 mt-3 sm:mt-4 md:mx-8">
-        <nav className={`flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 backdrop-blur-xl border border-border/50 rounded-2xl transition-all duration-300 ${
-          scrolled ? 'bg-card/90 shadow-xl' : 'bg-card/80 shadow-lg'
-        }`}>
+        <nav className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 bg-white border border-slate-200/60 shadow-md rounded-2xl">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 flex-shrink-0">
-            <motion.div 
-              className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary"
+          <Link to="/" className="flex items-center gap-2.5 shrink-0">
+            <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Waves className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground" />
+              <Waves className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
             </motion.div>
             <span className="text-lg sm:text-xl font-bold text-foreground hidden xs:inline">
               Complejos de Mar
@@ -81,7 +74,7 @@ export function Navbar() {
           <div className="hidden md:flex items-center gap-8">
             <motion.button
               onClick={() => handleNavClick('#inicio')}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className={linkClass}
               whileHover={{ y: -2 }}
               transition={{ duration: 0.2 }}
             >
@@ -92,7 +85,7 @@ export function Navbar() {
             <div className="relative" ref={dropdownRef}>
               <motion.button
                 onClick={() => setCabinDropdownOpen(!cabinDropdownOpen)}
-                className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className={`flex items-center gap-1 ${linkClass}`}
                 whileHover={{ y: -2 }}
                 transition={{ duration: 0.2 }}
               >
@@ -161,7 +154,7 @@ export function Navbar() {
 
             <motion.button
               onClick={() => handleNavClick('#servicios')}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className={linkClass}
               whileHover={{ y: -2 }}
               transition={{ duration: 0.2 }}
             >
@@ -169,7 +162,7 @@ export function Navbar() {
             </motion.button>
             <motion.button
               onClick={() => handleNavClick('#contacto')}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className={linkClass}
               whileHover={{ y: -2 }}
               transition={{ duration: 0.2 }}
             >
@@ -182,7 +175,6 @@ export function Navbar() {
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Button 
                 size="lg" 
-                className="rounded-xl"
                 onClick={() => handleNavClick('#contacto')}
               >
                 Reservar Ahora
@@ -323,7 +315,7 @@ export function Navbar() {
                   variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }}
                 >
                   <Button 
-                    className="w-full rounded-xl" 
+                    className="w-full"
                     size="lg"
                     onClick={() => handleNavClick('#contacto')}
                   >

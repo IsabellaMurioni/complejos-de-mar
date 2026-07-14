@@ -77,7 +77,7 @@ const itemVariants: Record<string, any> = {
 
 export function AmenitiesSection() {
   return (
-    <section id="servicios" className="py-16 sm:py-24 bg-gradient-to-b from-sand/30 to-background">
+    <section id="servicios" className="py-16 sm:py-24 bg-linear-to-b from-sand/30 to-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
@@ -121,7 +121,7 @@ export function AmenitiesSection() {
               >
                 <amenity.icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
               </motion.div>
-              <h3 className="font-semibold text-sm sm:text-base text-foreground">{amenity.title}</h3>
+              <h3 className="font-semibold text-sm sm:text-base text-primary">{amenity.title}</h3>
               <p className="mt-1 text-xs sm:text-sm text-muted-foreground">
                 {amenity.description}
               </p>
