@@ -86,34 +86,20 @@ export function Hero() {
 
           {/* CTA Buttons */}
           <motion.div
-            className="mt-10 flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
+            className="mt-10 flex justify-center"
             variants={itemVariants}
           >
             <motion.a
               href="#cabanas"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="w-full sm:w-auto"
             >
               <Button
                 size="lg"
-                className="text-base w-full sm:w-auto px-8 bg-white text-black hover:bg-white/90 border-0"
+                className="text-base px-8 bg-white text-black hover:bg-white/90 border-0"
               >
                 Explorar Cabañas
                 <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </motion.a>
-            <motion.a
-              href="#contacto"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              className="w-full sm:w-auto"
-            >
-              <Button
-                size="lg"
-                className="text-base w-full sm:w-auto px-8 bg-transparent text-white border border-white hover:bg-white/10"
-              >
-                Contactanos
               </Button>
             </motion.a>
           </motion.div>

@@ -124,12 +124,12 @@ const bookingCardIcons: Record<BookingCardIcon, ElementType> = {
 
 function StatCard({ icon: Icon, value, label }: { icon: ElementType; value: string; label: string }) {
   return (
-    <div className="rounded-xl border border-border bg-card p-4 sm:p-5 flex flex-col items-center gap-2.5 text-center shadow-sm">
-      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-        <Icon className="w-5 h-5 text-primary" />
+    <div className="rounded-xl border border-border bg-card p-3 sm:p-5 flex flex-col items-center gap-2 sm:gap-2.5 text-center shadow-sm">
+      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+        <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
       </div>
-      <span className="text-xl sm:text-2xl font-bold text-foreground leading-none">{value}</span>
-      <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">{label}</span>
+      <span className="text-base sm:text-2xl font-bold text-foreground leading-none">{value}</span>
+      <span className="text-[9px] sm:text-[11px] font-semibold text-muted-foreground uppercase tracking-wider leading-tight">{label}</span>
     </div>
   )
 }
@@ -195,7 +195,7 @@ function Carousel({ images, alt, unitName, unitDescription, onConsultar }: Carou
   const showOverlay = !!(unitName || onConsultar)
 
   return (
-    <div className="relative rounded-2xl overflow-hidden aspect-video bg-muted shadow-md group">
+    <div className="relative rounded-2xl overflow-hidden aspect-4/3 sm:aspect-video bg-muted shadow-md group">
       <AnimatePresence initial={false} custom={direction} mode="wait">
         <motion.img
           key={index}
@@ -229,7 +229,7 @@ function Carousel({ images, alt, unitName, unitDescription, onConsultar }: Carou
             </h3>
           )}
           {unitDescription && (
-            <p className="hidden sm:block text-xs text-white/80 leading-relaxed mb-3">
+            <p className="text-xs text-white/80 leading-relaxed mb-3">
               {unitDescription}
             </p>
           )}
@@ -253,14 +253,14 @@ function Carousel({ images, alt, unitName, unitDescription, onConsultar }: Carou
         <>
           <button
             onClick={prev}
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/50 backdrop-blur-sm text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70 z-20"
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-9 sm:h-9 rounded-full bg-black/50 backdrop-blur-sm text-white flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity hover:bg-black/70 z-20"
             aria-label="Anterior"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={next}
-            className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/50 backdrop-blur-sm text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70 z-20"
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-9 sm:h-9 rounded-full bg-black/50 backdrop-blur-sm text-white flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity hover:bg-black/70 z-20"
             aria-label="Siguiente"
           >
             <ChevronRight className="w-5 h-5" />
@@ -456,7 +456,7 @@ export function CabinDetail() {
 
           {cabin.units.length > 1 && (
             <AnimatedSection delay={0.1}>
-              <div className="flex flex-wrap gap-2 mb-8 justify-center">
+              <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 mb-8 sm:justify-center">
                 {cabin.units.map(unit => (
                   <motion.button
                     key={unit.id}
@@ -493,7 +493,7 @@ export function CabinDetail() {
                   onConsultar={() => handleConsultarFromCarousel(activeUnit.name)}
                 />
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mt-6">
+                <div className="grid grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-4 mt-6">
                   {activeUnit.sqm && (
                     <StatCard icon={Maximize2} value={`${activeUnit.sqm} m²`} label="Superficie" />
                   )}
@@ -540,13 +540,13 @@ export function CabinDetail() {
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-8 leading-tight text-center">
               Lo que incluye el complejo
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 max-w-2xl mx-auto">
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 max-w-2xl mx-auto">
               {cabin.amenities.map(amenity => {
                 const Icon = amenityIcons[amenity] ?? Home
                 return (
                   <div
                     key={amenity}
-                    className="flex items-center gap-3 p-4 rounded-xl bg-card border border-border"
+                    className="w-[calc(50%-6px)] sm:w-[calc(33.333%-10.667px)] flex items-center gap-3 p-4 rounded-xl bg-card border border-border"
                   >
                     <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                       <Icon className="w-4 h-4 text-primary" />
@@ -573,11 +573,11 @@ export function CabinDetail() {
                 <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-8 leading-tight">
                   Información importante
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex flex-wrap gap-4">
                   {cabin.infoCards.map((card, i) => {
                     const Icon = infoCardIcons[card.icon] ?? Info
                     return (
-                      <div key={i} className="flex gap-4 p-5 rounded-2xl bg-card border border-border">
+                      <div key={i} className="w-full sm:w-[calc(50%-8px)] flex gap-4 p-5 rounded-2xl bg-card border border-border">
                         <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
                           <Icon className="w-5 h-5 text-primary" />
                         </div>
@@ -647,11 +647,11 @@ export function CabinDetail() {
                 <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-8 leading-tight">
                   Información de pago y reserva
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="flex flex-wrap justify-center gap-5">
                   {cabin.bookingCards.map((card, i) => {
                     const Icon = bookingCardIcons[card.icon] ?? Info
                     return (
-                      <div key={i} className="flex gap-5 p-6 rounded-2xl bg-card border border-border">
+                      <div key={i} className="w-full sm:w-[calc(50%-10px)] flex gap-5 p-6 rounded-2xl bg-card border border-border">
                         <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
                           <Icon className="w-5 h-5 text-primary" />
                         </div>
@@ -685,7 +685,7 @@ export function CabinDetail() {
                 <p className="text-sm font-medium text-white/70">
                   Seguinos y contactanos en:
                 </p>
-                <div className="flex flex-wrap gap-3 justify-center">
+                <div className="flex gap-2 sm:gap-3 justify-center">
                   {cabin.contactItems.map((item, i) => (
                     <motion.a
                       key={i}
@@ -695,7 +695,7 @@ export function CabinDetail() {
                       title={item.label}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
-                      className="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+                      className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors shrink-0"
                     >
                       <SocialIcon type={item.type} />
                     </motion.a>
