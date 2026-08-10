@@ -195,12 +195,10 @@ function Carousel({ images, alt, unitName, unitDescription, onConsultar }: Carou
   const showOverlay = !!(unitName || onConsultar)
 
   return (
-    <div className="relative rounded-2xl overflow-hidden aspect-4/3 sm:aspect-video bg-muted shadow-md group">
+    <div className="relative rounded-2xl overflow-hidden aspect-4/5 sm:aspect-video bg-muted shadow-md group">
       <AnimatePresence initial={false} custom={direction} mode="wait">
-        <motion.img
+        <motion.div
           key={index}
-          src={images[index]}
-          alt={`${alt} — foto ${index + 1}`}
           custom={direction}
           variants={{
             enter: (d: number) => ({ x: d > 0 ? '6%' : '-6%', opacity: 0 }),
@@ -211,13 +209,19 @@ function Carousel({ images, alt, unitName, unitDescription, onConsultar }: Carou
           animate="center"
           exit="exit"
           transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+          className="absolute inset-0 scale-[1.05] sm:scale-100"
+        >
+          <img
+            src={images[index]}
+            alt={`${alt} — foto ${index + 1}`}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </motion.div>
       </AnimatePresence>
 
       {/* Gradient for overlay legibility */}
       {showOverlay && (
-        <div className="absolute inset-0 bg-linear-to-t from-black/65 via-black/15 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/25 sm:from-black/65 sm:via-black/15 to-transparent pointer-events-none" />
       )}
 
       {/* Info overlay — bottom-left, above the pagination dots */}
@@ -253,17 +257,17 @@ function Carousel({ images, alt, unitName, unitDescription, onConsultar }: Carou
         <>
           <button
             onClick={prev}
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-9 sm:h-9 rounded-full bg-black/50 backdrop-blur-sm text-white flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity hover:bg-black/70 z-20"
+            className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 backdrop-blur-sm text-white flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity hover:bg-black/60 z-20"
             aria-label="Anterior"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
           <button
             onClick={next}
-            className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-9 sm:h-9 rounded-full bg-black/50 backdrop-blur-sm text-white flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity hover:bg-black/70 z-20"
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 backdrop-blur-sm text-white flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity hover:bg-black/60 z-20"
             aria-label="Siguiente"
           >
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
           <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
             {images.map((_, i) => (
@@ -456,14 +460,14 @@ export function CabinDetail() {
 
           {cabin.units.length > 1 && (
             <AnimatedSection delay={0.1}>
-              <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 mb-8 sm:justify-center">
+              <div className="flex flex-wrap justify-center gap-2 mb-4 sm:mb-8">
                 {cabin.units.map(unit => (
                   <motion.button
                     key={unit.id}
                     onClick={() => setActiveUnitId(unit.id)}
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.97 }}
-                    className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                    className={`w-[calc(50%-4px)] sm:w-auto px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
                       unit.id === activeUnitId
                         ? 'bg-primary text-white shadow-sm'
                         : 'bg-card border border-border text-foreground hover:border-primary/40'
