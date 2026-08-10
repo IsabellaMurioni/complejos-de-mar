@@ -122,9 +122,9 @@ const bookingCardIcons: Record<BookingCardIcon, ElementType> = {
 
 // ── Internal components ──────────────────────────────────────────────────────
 
-function StatCard({ icon: Icon, value, label }: { icon: ElementType; value: string; label: string }) {
+function StatCard({ icon: Icon, value, label, className }: { icon: ElementType; value: string; label: string; className?: string }) {
   return (
-    <div className="rounded-xl border border-border bg-card p-3 sm:p-5 flex flex-col items-center gap-2 sm:gap-2.5 text-center shadow-sm">
+    <div className={`rounded-xl border border-border bg-card p-3 sm:p-5 flex flex-col items-center gap-2 sm:gap-2.5 text-center shadow-sm shrink-0${className ? ` ${className}` : ''}`}>
       <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
         <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
       </div>
@@ -497,32 +497,36 @@ export function CabinDetail() {
                   onConsultar={() => handleConsultarFromCarousel(activeUnit.name)}
                 />
 
-                <div className="grid grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-4 mt-6">
+                <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mt-6">
                   {activeUnit.sqm && (
-                    <StatCard icon={Maximize2} value={`${activeUnit.sqm} m²`} label="Superficie" />
+                    <StatCard icon={Maximize2} value={`${activeUnit.sqm} m²`} label="Superficie" className="w-[calc(33.333%-5.33px)] sm:w-[calc(33.333%-10.67px)] lg:w-[calc(20%-12.8px)]" />
                   )}
                   <StatCard
                     icon={Users}
                     value={`${activeUnit.guests}`}
                     label={activeUnit.guests === 1 ? 'Huésped' : 'Huéspedes'}
+                    className="w-[calc(33.333%-5.33px)] sm:w-[calc(33.333%-10.67px)] lg:w-[calc(20%-12.8px)]"
                   />
                   {bedrooms > 0 && (
                     <StatCard
                       icon={BedDouble}
                       value={`${bedrooms}`}
                       label={bedrooms === 1 ? 'Dormitorio' : 'Dormitorios'}
+                      className="w-[calc(33.333%-5.33px)] sm:w-[calc(33.333%-10.67px)] lg:w-[calc(20%-12.8px)]"
                     />
                   )}
                   <StatCard
                     icon={Bed}
                     value={`${activeUnit.beds}`}
                     label={activeUnit.beds === 1 ? 'Cama' : 'Camas'}
+                    className="w-[calc(33.333%-5.33px)] sm:w-[calc(33.333%-10.67px)] lg:w-[calc(20%-12.8px)]"
                   />
                   {activeUnit.bathrooms != null && (
                     <StatCard
                       icon={Bath}
                       value={`${activeUnit.bathrooms}`}
                       label={activeUnit.bathrooms === 1 ? 'Baño' : 'Baños'}
+                      className="w-[calc(33.333%-5.33px)] sm:w-[calc(33.333%-10.67px)] lg:w-[calc(20%-12.8px)]"
                     />
                   )}
                 </div>
