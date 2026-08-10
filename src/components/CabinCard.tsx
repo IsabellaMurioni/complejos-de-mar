@@ -1,29 +1,31 @@
 import { Link } from 'react-router-dom'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Home, ArrowRight } from 'lucide-react'
+import { ArrowRight, MapPin } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 interface CabinCardProps {
   id: string
   name: string
+  subLabel?: string
   description: string
   image: string
-  cabinCount: number
+  location: string
   featured?: boolean
 }
 
 export function CabinCard({
   id,
   name,
+  subLabel,
   description,
   image,
-  cabinCount,
+  location,
   featured = false,
 }: CabinCardProps) {
   return (
     <motion.div
-      whileHover={{ y: -8 }}
+      whileHover={{ y: -6 }}
       transition={{ duration: 0.3, ease: 'easeOut' }}
       className="h-full"
     >
@@ -33,43 +35,43 @@ export function CabinCard({
         }`}
       >
         {/* Image */}
-        <div className="relative aspect-[4/3] overflow-hidden">
+        <div className="relative aspect-video overflow-hidden">
           <motion.img
             src={image}
             alt={name}
             className="w-full h-full object-cover"
-            whileHover={{ scale: 1.08 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
+            whileHover={{ scale: 1.06 }}
+            transition={{ duration: 0.55, ease: 'easeOut' }}
           />
           {featured && (
-            <motion.div 
-              className="absolute top-4 left-4 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-            >
+            <div className="absolute top-3 left-3 px-2.5 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">
               Destacado
-            </motion.div>
+            </div>
           )}
         </div>
 
         {/* Content */}
         <div className="p-5 sm:p-6 flex flex-col flex-1">
-          <h3 className="text-lg sm:text-xl font-bold text-foreground">{name}</h3>
-          <p className="mt-2 text-muted-foreground text-sm line-clamp-2 flex-1">
-            {description}
-          </p>
-
-          {/* Cabin Count */}
-          <div className="flex items-center gap-2 mt-4 text-sm text-muted-foreground">
-            <Home className="w-4 h-4 text-primary flex-shrink-0" />
-            <span>{cabinCount} cabañas</span>
+          <div className="mb-4">
+            <h3 className="text-lg sm:text-xl font-bold text-foreground leading-tight">{name}</h3>
+            {subLabel && (
+              <p className="text-xs font-semibold text-primary uppercase tracking-wider mt-1">
+                {subLabel}
+              </p>
+            )}
+            <p className="flex items-center gap-1 text-xs text-muted-foreground mt-2">
+              <MapPin className="w-3 h-3 shrink-0" />
+              {location}
+            </p>
           </div>
+          <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3 flex-1">{description}</p>
 
           {/* CTA */}
-          <Link to={`/cabanas/${id}`} className="block mt-5 sm:mt-6">
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Button className="w-full rounded-xl" variant={featured ? 'default' : 'outline'}>
+          <Link to={`/cabanas/${id}`} className="block mt-5">
+            <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.98 }}>
+              <Button
+                className="w-full rounded-xl bg-primary text-white border border-primary hover:bg-white hover:text-foreground hover:border-border transition-colors"
+              >
                 Ver Detalles
                 <ArrowRight className="w-4 h-4 ml-1" />
               </Button>

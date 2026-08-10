@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
-import heroVideo from '@/assets/video/hero.mp4'
+const heroVideo = 'https://flil8c9xwmo8z3dc.public.blob.vercel-storage.com/hero.mp4'
 
 const containerVariants: Record<string, any> = {
   hidden: { opacity: 0 },

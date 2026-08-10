@@ -5,45 +5,46 @@ const idigitalLogo = '/idigital-build.png'
 
 const footerLinks = {
   cabanas: [
-    { label: 'Mimmo II', href: '/cabanas/mimmo-ii' },
-    { label: 'Los Amigos', href: '/cabanas/los-amigos' },
-    { label: 'Azahar', href: '/cabanas/azahar' },
-    { label: 'Cabañas VIP', href: '/cabanas/cabanas-vip' },
-    { label: 'Chacras del Mar', href: '/cabanas/chacras-del-mar' },
+    { label: 'Mimmo I',          href: '/cabanas/mimmo-i' },
+    { label: 'Mimmo II',         href: '/cabanas/mimmo-ii' },
+    { label: 'Casas Azahar',     href: '/cabanas/azahar' },
+    { label: 'Los Amigos',       href: '/cabanas/los-amigos' },
+    { label: 'Cabañas VIP',      href: '/cabanas/cabanas-vip' },
+    { label: 'Chacras del Mar',  href: '/cabanas/chacras' },
   ],
   informacion: [
-    { label: 'Sobre Nosotros', href: '#nosotros' },
-    { label: 'Servicios', href: '#servicios' },
+    { label: 'Sobre Nosotros',      href: '#nosotros' },
     { label: 'Preguntas Frecuentes', href: '#faq' },
   ],
   contacto: [
-    { label: '+54 223 456-7890', href: 'tel:+542234567890' },
-    { label: 'info@complejosdemar.com', href: 'mailto:info@complejosdemar.com' },
+    { label: '+54 223 456-7890',          href: 'tel:+542234567890' },
+    { label: 'info@complejosdelmar.com',  href: 'mailto:info@complejosdelmar.com' },
     { label: 'Costa Atlántica, Argentina', href: '#' },
   ],
 }
 
 const socialLinks = {
   whatsapp: [
-    { complex: 'Mimmo II', link: 'https://wa.me/542234567890' },
-    { complex: 'Los Amigos', link: 'https://wa.me/542234567891' },
-    { complex: 'Azahar', link: 'https://wa.me/542234567892' },
-    { complex: 'Cabañas VIP', link: 'https://wa.me/542234567893' },
-    { complex: 'Chacras del Mar', link: 'https://wa.me/542234567894' },
+    { complex: 'Mimmo I',          link: 'https://wa.me/5491167573390' },
+    { complex: 'Mimmo II',         link: 'https://wa.me/5491167573390' },
+    { complex: 'Casas Azahar',     link: 'https://wa.me/5491128350180' },
+    { complex: 'Los Amigos',       link: 'https://wa.me/5491158151985' },
+    { complex: 'Cabañas VIP',      link: 'https://wa.me/5491150995700' },
+    { complex: 'Chacras del Mar',  link: 'https://wa.me/5491123912184' },
   ],
   instagram: [
-    { complex: 'Mimmo II', link: 'https://instagram.com/mimmoii' },
-    { complex: 'Los Amigos', link: 'https://instagram.com/losamigos' },
-    { complex: 'Azahar', link: 'https://instagram.com/azahar' },
-    { complex: 'Cabañas VIP', link: 'https://instagram.com/cabanasvip' },
-    { complex: 'Chacras del Mar', link: 'https://instagram.com/chacrasdelmar' },
+    { complex: 'Mimmo',                    link: 'https://instagram.com/cabanas.mimmo' },
+    { complex: '@azaharmardelaspampas',     link: 'https://instagram.com/azaharmardelaspampas' },
+    { complex: '@prosperidadazahar',        link: 'https://instagram.com/prosperidadazahar' },
+    { complex: 'Los Amigos',               link: 'https://instagram.com/cabanas_losamigos' },
+    { complex: 'Cabañas VIP',             link: 'https://instagram.com/cabanas.vip' },
+    { complex: 'Chacras del Mar',          link: 'https://instagram.com/chacras_de_mar' },
   ],
   email: [
-    { complex: 'Mimmo II', link: 'mailto:mimmoii@complejosdemar.com' },
-    { complex: 'Los Amigos', link: 'mailto:losamigos@complejosdemar.com' },
-    { complex: 'Azahar', link: 'mailto:azahar@complejosdemar.com' },
-    { complex: 'Cabañas VIP', link: 'mailto:vip@complejosdemar.com' },
-    { complex: 'Chacras del Mar', link: 'mailto:chacras@complejosdemar.com' },
+    { complex: 'Mimmo',           link: 'mailto:cabaniasmimmo@gmail.com' },
+    { complex: 'Casas Azahar',    link: 'mailto:prosperidad.azahar@gmail.com' },
+    { complex: 'Cabañas VIP',     link: 'mailto:ventashotelesdelacosta@hotmail.com' },
+    { complex: 'Chacras del Mar', link: 'mailto:info@chacrasdemar.com.ar' },
   ],
 }
 
@@ -124,7 +125,7 @@ function SocialButton({ icon: Icon, label, links }: SocialButtonProps) {
 
 export function Footer() {
   return (
-    <footer className="bg-navy-deep text-white">
+    <footer style={{ backgroundColor: 'oklch(0.26 0.120 262)' }} className="text-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
 
         {/* Main content grid */}
@@ -141,7 +142,7 @@ export function Footer() {
               <motion.div whileHover={{ scale: 1.08 }} transition={{ duration: 0.2 }}>
                 <Waves className="w-6 h-6 text-white" />
               </motion.div>
-              <span className="text-base font-bold text-white tracking-tight">Complejos de Mar</span>
+              <span className="text-base font-bold text-white tracking-tight">Complejos del Mar</span>
             </a>
             <p className="mt-4 text-sm text-white/50 leading-relaxed max-w-68">
               Tu destino para unas vacaciones inolvidables en la costa argentina.
@@ -224,14 +225,14 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="py-5 flex items-center justify-between">
           <p className="text-xs text-white/35 leading-none">
-            &copy; {new Date().getFullYear()} Complejos de Mar. Todos los derechos reservados.
+            &copy; {new Date().getFullYear()} Complejos del Mar. Todos los derechos reservados.
           </p>
           <div className="flex items-center gap-1">
             <span className="text-xs text-white/35 leading-none">Developed and designed by</span>
             <img
               src={idigitalLogo}
               alt="idigital.build"
-              className="h-23 w-auto object-contain block"
+              className="h-20 w-auto object-contain block"
               style={{ filter: 'grayscale(1) invert(1) brightness(15)', opacity: 0.9 }}
             />
           </div>

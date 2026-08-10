@@ -22,14 +22,8 @@ export function Navbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
-
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
+    document.body.style.overflow = isOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [isOpen])
 
@@ -41,7 +35,7 @@ export function Navbar() {
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' })
       } else {
-        navigate('/' + href)
+        navigate({ pathname: '/', hash: href })
       }
     }
   }
@@ -57,20 +51,18 @@ export function Navbar() {
     >
       <div className="mx-3 sm:mx-4 mt-3 sm:mt-4 md:mx-8">
         <nav className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 bg-white border border-slate-200/60 shadow-md rounded-2xl">
+
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 shrink-0">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Waves className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
             </motion.div>
             <span className="text-lg sm:text-xl font-bold text-foreground hidden xs:inline">
-              Complejos de Mar
+              Complejos del Mar
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
             <motion.button
               onClick={() => handleNavClick('#inicio')}
@@ -81,7 +73,7 @@ export function Navbar() {
               Inicio
             </motion.button>
 
-            {/* Cabanas Dropdown */}
+            {/* Cabañas dropdown */}
             <div className="relative" ref={dropdownRef}>
               <motion.button
                 onClick={() => setCabinDropdownOpen(!cabinDropdownOpen)}
@@ -105,14 +97,11 @@ export function Navbar() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
                     transition={{ duration: 0.2, ease: 'easeOut' }}
-                    className="absolute top-full left-0 mt-2 w-56 bg-card/95 backdrop-blur-xl border border-border/50 rounded-xl shadow-xl overflow-hidden"
+                    className="absolute top-full left-0 mt-2 w-72 bg-card/95 backdrop-blur-xl border border-border/50 rounded-xl shadow-xl overflow-hidden"
                   >
                     <div className="py-2">
                       <motion.button
-                        onClick={() => {
-                          setCabinDropdownOpen(false)
-                          handleNavClick('#cabanas')
-                        }}
+                        onClick={() => { setCabinDropdownOpen(false); handleNavClick('#cabanas') }}
                         className="w-full px-4 py-2.5 text-left text-sm font-medium text-foreground hover:bg-muted/50 transition-colors flex items-center gap-2"
                         whileHover={{ x: 4 }}
                         transition={{ duration: 0.2 }}
@@ -126,22 +115,20 @@ export function Navbar() {
                           key={cabin.id}
                           initial={{ opacity: 0, x: -10 }}
                           animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.05 }}
+                          transition={{ delay: index * 0.04 }}
                         >
                           <Link
                             to={`/cabanas/${cabin.id}`}
                             onClick={() => setCabinDropdownOpen(false)}
-                            className="block px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+                            className="block px-4 py-2.5 text-sm hover:bg-muted/50 transition-colors"
                           >
-                            <motion.span 
-                              className="flex items-center justify-between"
+                            <motion.span
+                              className="flex flex-col gap-0.5"
                               whileHover={{ x: 4 }}
                               transition={{ duration: 0.2 }}
                             >
-                              {cabin.name}
-                              <span className="text-xs text-muted-foreground">
-                                {cabin.cabinCount} cab.
-                              </span>
+                              <span className="font-medium text-foreground">{cabin.name}</span>
+                              <span className="text-xs text-muted-foreground">{cabin.subLabel}</span>
                             </motion.span>
                           </Link>
                         </motion.div>
@@ -151,38 +138,35 @@ export function Navbar() {
                 )}
               </AnimatePresence>
             </div>
+            <motion.button
+              onClick={() => handleNavClick('#nosotros')}
+              className={linkClass}
+              whileHover={{ y: -2 }}
+              transition={{ duration: 0.2 }}
+            >
+              Sobre Nosotros
+            </motion.button>
 
             <motion.button
-              onClick={() => handleNavClick('#servicios')}
+              onClick={() => handleNavClick('#faq')}
               className={linkClass}
               whileHover={{ y: -2 }}
               transition={{ duration: 0.2 }}
             >
-              Servicios
-            </motion.button>
-            <motion.button
-              onClick={() => handleNavClick('#contacto')}
-              className={linkClass}
-              whileHover={{ y: -2 }}
-              transition={{ duration: 0.2 }}
-            >
-              Contacto
+              FAQ
             </motion.button>
           </div>
 
-          {/* CTA Button */}
+          {/* CTA */}
           <div className="hidden md:block">
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Button 
-                size="lg" 
-                onClick={() => handleNavClick('#contacto')}
-              >
-                Reservar Ahora
+              <Button size="lg" onClick={() => handleNavClick('#cabanas')}>
+                Ver Complejos
               </Button>
             </motion.div>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile toggle */}
           <motion.button
             className="md:hidden p-2 text-foreground"
             onClick={() => setIsOpen(!isOpen)}
@@ -215,26 +199,23 @@ export function Navbar() {
           </motion.button>
         </nav>
 
-        {/* Mobile Navigation */}
+        {/* Mobile menu */}
         <AnimatePresence>
           {isOpen && (
-            <motion.div 
-              className="md:hidden mt-2 p-5 sm:p-6 bg-card/95 backdrop-blur-xl border border-border/50 rounded-2xl shadow-lg overflow-hidden max-h-[calc(100vh-100px)] overflow-y-auto"
+            <motion.div
+              className="md:hidden mt-2 p-5 sm:p-6 bg-card/95 backdrop-blur-xl border border-border/50 rounded-2xl shadow-lg max-h-[calc(100vh-100px)] overflow-y-auto"
               initial={{ opacity: 0, height: 0, y: -10 }}
               animate={{ opacity: 1, height: 'auto', y: 0 }}
               exit={{ opacity: 0, height: 0, y: -10 }}
               transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
             >
-              <motion.div 
+              <motion.div
                 className="flex flex-col gap-1"
                 initial="hidden"
                 animate="visible"
                 variants={{
                   hidden: { opacity: 0 },
-                  visible: { 
-                    opacity: 1,
-                    transition: { staggerChildren: 0.05, delayChildren: 0.1 }
-                  }
+                  visible: { opacity: 1, transition: { staggerChildren: 0.05, delayChildren: 0.1 } },
                 }}
               >
                 <motion.button
@@ -244,8 +225,8 @@ export function Navbar() {
                 >
                   Inicio
                 </motion.button>
-                
-                {/* Mobile Cabanas */}
+
+                {/* Mobile Cabañas */}
                 <motion.div variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }}>
                   <button
                     onClick={() => setMobileCabinOpen(!mobileCabinOpen)}
@@ -276,15 +257,15 @@ export function Navbar() {
                             <Home className="w-4 h-4" />
                             Ver Todos
                           </button>
-                          {cabins.map((cabin) => (
+                          {cabins.map(cabin => (
                             <Link
                               key={cabin.id}
                               to={`/cabanas/${cabin.id}`}
                               onClick={() => setIsOpen(false)}
                               className="flex items-center justify-between py-2.5 px-3 text-sm text-muted-foreground hover:text-foreground rounded-lg hover:bg-muted/50 transition-colors"
                             >
-                              {cabin.name}
-                              <span className="text-xs text-muted-foreground/60">{cabin.cabinCount} cab.</span>
+                              <span className="font-medium">{cabin.name}</span>
+                              <span className="text-xs text-muted-foreground/60">{cabin.subLabel}</span>
                             </Link>
                           ))}
                         </div>
@@ -294,32 +275,27 @@ export function Navbar() {
                 </motion.div>
 
                 <motion.button
-                  onClick={() => handleNavClick('#servicios')}
+                  onClick={() => handleNavClick('#nosotros')}
                   className="text-base font-medium text-foreground py-3 px-3 text-left rounded-xl hover:bg-muted/50 transition-colors"
                   variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }}
                 >
-                  Servicios
+                  Sobre Nosotros
                 </motion.button>
 
                 <motion.button
-                  onClick={() => handleNavClick('#contacto')}
+                  onClick={() => handleNavClick('#faq')}
                   className="text-base font-medium text-foreground py-3 px-3 text-left rounded-xl hover:bg-muted/50 transition-colors"
                   variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }}
                 >
-                  Contacto
+                  FAQ
                 </motion.button>
 
-                {/* Mobile CTA */}
-                <motion.div 
+                <motion.div
                   className="pt-3 mt-2 border-t border-border/50"
                   variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }}
                 >
-                  <Button 
-                    className="w-full"
-                    size="lg"
-                    onClick={() => handleNavClick('#contacto')}
-                  >
-                    Reservar Ahora
+                  <Button className="w-full" size="lg" onClick={() => handleNavClick('#cabanas')}>
+                    Ver Complejos
                   </Button>
                 </motion.div>
               </motion.div>

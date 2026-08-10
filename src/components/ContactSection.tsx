@@ -16,11 +16,14 @@ import { motion } from 'framer-motion'
 import { AnimatedSection, StaggerContainer, StaggerItem } from '@/components/motion'
 
 const cabins = [
-  { value: 'mimmo', label: 'Mimmo II', name: 'Mimmo' },
-  { value: 'amigos', label: 'Los Amigos', name: 'Los Amigos' },
-  { value: 'azahar', label: 'Azahar', name: 'Azahar' },
-  { value: 'vip', label: 'Cabañas VIP', name: 'Cabañas VIP' },
-  { value: 'chacras', label: 'Chacras del Mar', name: 'Chacras del Mar' },
+  { value: 'mimmo-i',    label: 'Mimmo I' },
+  { value: 'mimmo-ii',   label: 'Mimmo II' },
+  { value: 'azahar-i',   label: 'Azahar I' },
+  { value: 'azahar-ii',  label: 'Azahar II' },
+  { value: 'amigos',     label: 'Los Amigos' },
+  { value: 'vip',        label: 'Cabañas VIP' },
+  { value: 'chacras-i',  label: 'Chacras I' },
+  { value: 'chacras-ii', label: 'Chacras II' },
 ]
 
 const personasOptions = [
@@ -55,7 +58,7 @@ export function ContactSection() {
   useEffect(() => {
     const complejo = searchParams.get('complejo')
     if (complejo) {
-      const match = cabins.find(c => c.name === complejo)
+      const match = cabins.find(c => c.label.toLowerCase() === complejo.toLowerCase())
       if (match) setSelectedCabin(match.value)
       setTimeout(() => {
         document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' })
@@ -171,7 +174,11 @@ export function ContactSection() {
                       </SelectTrigger>
                       <SelectContent>
                         {cabins.map((cabin) => (
-                          <SelectItem key={cabin.value} value={cabin.value}>
+                          <SelectItem
+                            key={cabin.value}
+                            value={cabin.value}
+                            className="cursor-pointer data-highlighted:bg-primary/15 data-highlighted:text-primary"
+                          >
                             {cabin.label}
                           </SelectItem>
                         ))}
@@ -188,7 +195,11 @@ export function ContactSection() {
                     </SelectTrigger>
                     <SelectContent>
                       {personasOptions.map((opt) => (
-                        <SelectItem key={opt.value} value={opt.value}>
+                        <SelectItem
+                          key={opt.value}
+                          value={opt.value}
+                          className="cursor-pointer data-highlighted:bg-primary/15 data-highlighted:text-primary"
+                        >
                           {opt.label}
                         </SelectItem>
                       ))}

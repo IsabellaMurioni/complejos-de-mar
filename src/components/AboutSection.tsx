@@ -26,7 +26,7 @@ const features = [
 
 export function AboutSection() {
   return (
-    <section className="py-16 sm:py-24 bg-linear-to-b from-background to-sand/30">
+    <section id="nosotros" className="py-16 sm:py-24 bg-linear-to-b from-background to-sand/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid lg:grid-cols-2 gap-10 sm:gap-16 items-center">
           {/* Images Grid */}
