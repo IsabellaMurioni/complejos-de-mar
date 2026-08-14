@@ -93,9 +93,23 @@ const amenityIcons: Record<string, ElementType> = {
   'Vista Panorámica': Globe,
   'Servicio de Limpieza': Home,
   'Spa': Bath,
+  'Sauna': Bath,
   'Solarium': Maximize2,
   'Guardavidas': Users,
   'Pet Friendly': Heart,
+  'Vajilla completa': UtensilsCrossed,
+  'Cafetera eléctrica': UtensilsCrossed,
+  'Tostadora': UtensilsCrossed,
+  'Pava': UtensilsCrossed,
+  'Microondas': UtensilsCrossed,
+  'Pileta Climatizada': Droplets,
+  'Blanquería': Bed,
+  'WiFi por unidad': Wifi,
+  'WiFi (complejo y unidad)': Wifi,
+  'Spa & Sauna': Bath,
+  'Fabricadora de hielo': Droplets,
+  'Cava de vinos': UtensilsCrossed,
+  'Lavarropas': Wind,
 }
 
 // ── Info & Booking card icons ────────────────────────────────────────────────
@@ -493,7 +507,7 @@ export function CabinDetail() {
                   images={activeUnit.gallery}
                   alt={activeUnit.name}
                   unitName={activeUnit.name}
-                  unitDescription={generateUnitDescription(activeUnit)}
+                  unitDescription={activeUnit.description ?? generateUnitDescription(activeUnit)}
                   onConsultar={() => handleConsultarFromCarousel(activeUnit.name)}
                 />
 
@@ -503,8 +517,8 @@ export function CabinDetail() {
                   )}
                   <StatCard
                     icon={Users}
-                    value={`${activeUnit.guests}`}
-                    label={activeUnit.guests === 1 ? 'Huésped' : 'Huéspedes'}
+                    value={activeUnit.guestsLabel ?? `${activeUnit.guests}`}
+                    label={activeUnit.guests === 1 && !activeUnit.guestsLabel ? 'Huésped' : 'Huéspedes'}
                     className="w-[calc(33.333%-5.33px)] sm:w-[calc(33.333%-10.67px)] lg:w-[calc(20%-12.8px)]"
                   />
                   {bedrooms > 0 && (
@@ -530,6 +544,20 @@ export function CabinDetail() {
                     />
                   )}
                 </div>
+
+                {activeUnit.amenities && activeUnit.amenities.length > 0 && (
+                  <div className="flex flex-wrap justify-center gap-2 mt-4 max-w-2xl mx-auto">
+                    {activeUnit.amenities.map(amenity => {
+                      const Icon = amenityIcons[amenity] ?? Home
+                      return (
+                        <div key={amenity} className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-card border border-border text-sm">
+                          <Icon className="w-3.5 h-3.5 text-primary shrink-0" />
+                          <span className="text-foreground">{amenity}</span>
+                        </div>
+                      )
+                    })}
+                  </div>
+                )}
               </motion.div>
             )}
           </AnimatePresence>

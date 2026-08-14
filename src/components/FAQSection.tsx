@@ -6,7 +6,7 @@ import { AnimatedSection } from '@/components/motion'
 const faqs = [
   {
     question: '¿Cuál es el horario de check-in y check-out?',
-    answer: 'El check-in es a partir de las 14:00 hs y el check-out es hasta las 10:00 hs. Si necesitás un horario especial, contactanos y haremos lo posible por acomodarte.'
+    answer: 'El check-in es a partir de las 16:00 hs y el check-out es hasta las 09:00 hs sin excepción en temporada alta. Resto del año, consultá con el complejo.'
   },
   {
     question: '¿Se aceptan mascotas en las cabañas?',
@@ -30,7 +30,7 @@ const faqs = [
   },
   {
     question: '¿Cuál es la política de cancelación?',
-    answer: 'Las cancelaciones con más de 15 días de anticipación tienen reembolso completo. Entre 7 y 15 días, se retiene el 50%. Con menos de 7 días no hay reembolso, pero podés reprogramar tu estadía.'
+    answer: 'La seña no es reembolsable. La fecha puede modificarse con un mes de anticipación y está sujeta a disponibilidad. En caso de cancelación, el valor de la seña podrá utilizarse para una futura estadía.'
   },
   {
     question: '¿A qué distancia están de la playa?',

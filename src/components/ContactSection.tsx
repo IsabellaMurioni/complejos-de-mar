@@ -22,8 +22,8 @@ const cabins = [
   { value: 'azahar-ii',  label: 'Azahar II' },
   { value: 'amigos',     label: 'Los Amigos' },
   { value: 'vip',        label: 'Cabañas VIP' },
-  { value: 'chacras-i',  label: 'Chacras I' },
-  { value: 'chacras-ii', label: 'Chacras II' },
+  { value: 'chacras-i',  label: 'Chacras 24' },
+  { value: 'chacras-ii', label: 'Chacras 23' },
 ]
 
 const personasOptions = [

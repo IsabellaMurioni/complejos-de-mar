@@ -10,7 +10,7 @@ const features = [
   {
     icon: Sun,
     title: 'Ubicación Privilegiada',
-    description: 'A pasos de la playa, con acceso directo y vistas increíbles al mar.',
+    description: 'A pasos de la playa y a metros del centro comercial.',
   },
   {
     icon: Umbrella,
@@ -111,8 +111,8 @@ export function AboutSection() {
             </AnimatedSection>
             <AnimatedSection delay={0.2}>
               <p className="mt-4 sm:mt-6 text-base sm:text-lg text-muted-foreground leading-relaxed">
-                En Complejos de Mar nos dedicamos a ofrecer alojamientos de calidad 
-                superior en los mejores destinos de la costa argentina. Cada uno de 
+                En Complejos del Mar nos dedicamos a ofrecer alojamientos de calidad
+                superior en los mejores destinos de la costa argentina. Cada uno de
                 nuestros complejos ha sido diseñado pensando en tu comodidad y bienestar.
               </p>
             </AnimatedSection>

@@ -11,23 +11,23 @@ const _mimmoFachada = import.meta.glob<string>(
   { eager: true, import: 'default' }
 )
 const _mimmoD1 = import.meta.glob<string>(
-  '/src/assets/complexes/mimmo/depto-1/gallery/*.{jpg,JPG,png,PNG}',
+  '/src/assets/complexes/mimmo/chalet/gallery/*.{jpg,JPG,png,PNG}',
   { eager: true, import: 'default' }
 )
 const _mimmoD2 = import.meta.glob<string>(
-  '/src/assets/complexes/mimmo/depto-2/gallery/*.{jpg,JPG,png,PNG}',
+  '/src/assets/complexes/mimmo/cabana-confort/gallery/*.{jpg,JPG,png,PNG}',
   { eager: true, import: 'default' }
 )
 const _mimmoD3 = import.meta.glob<string>(
-  '/src/assets/complexes/mimmo/depto-3/gallery/*.{jpg,JPG,png,PNG}',
+  '/src/assets/complexes/mimmo/planta-baja/gallery/*.{jpg,JPG,png,PNG}',
   { eager: true, import: 'default' }
 )
 const _mimmoD4 = import.meta.glob<string>(
-  '/src/assets/complexes/mimmo/depto-4/gallery/*.{jpg,JPG,png,PNG}',
+  '/src/assets/complexes/mimmo/planta-alta/gallery/*.{jpg,JPG,png,PNG}',
   { eager: true, import: 'default' }
 )
 const _mimmoD5 = import.meta.glob<string>(
-  '/src/assets/complexes/mimmo/depto-5/gallery/*.{jpg,JPG,png,PNG}',
+  '/src/assets/complexes/mimmo/cabana-clasica/gallery/*.{jpg,JPG,png,PNG}',
   { eager: true, import: 'default' }
 )
 const _mimmoIICabana = import.meta.glob<string>(
@@ -35,15 +35,15 @@ const _mimmoIICabana = import.meta.glob<string>(
   { eager: true, import: 'default' }
 )
 const _amigosD1 = import.meta.glob<string>(
-  '/src/assets/complexes/los-amigos/depto-1/gallery/*.{jpg,JPG,png,PNG}',
+  '/src/assets/complexes/los-amigos/casa/gallery/*.{jpg,JPG,png,PNG}',
   { eager: true, import: 'default' }
 )
 const _amigosD2 = import.meta.glob<string>(
-  '/src/assets/complexes/los-amigos/depto-2/gallery/*.{jpg,JPG,png,PNG}',
+  '/src/assets/complexes/los-amigos/departamento/gallery/*.{jpg,JPG,png,PNG}',
   { eager: true, import: 'default' }
 )
 const _amigosD3 = import.meta.glob<string>(
-  '/src/assets/complexes/los-amigos/depto-3/gallery/*.{jpg,JPG,png,PNG}',
+  '/src/assets/complexes/los-amigos/duplex/gallery/*.{jpg,JPG,png,PNG}',
   { eager: true, import: 'default' }
 )
 const _amigosFachada = import.meta.glob<string>(
@@ -59,11 +59,11 @@ const _azaharII = import.meta.glob<string>(
   { eager: true, import: 'default' }
 )
 const _chacrasI = import.meta.glob<string>(
-  '/src/assets/complexes/chacras/chacras-i/gallery/*.{jpg,JPG,png,PNG}',
+  '/src/assets/complexes/chacras/chacras-24/gallery/*.{jpg,JPG,png,PNG}',
   { eager: true, import: 'default' }
 )
 const _chacrasII = import.meta.glob<string>(
-  '/src/assets/complexes/chacras/chacras-ii/gallery/*.{jpg,JPG,png,PNG}',
+  '/src/assets/complexes/chacras/chacras-23/gallery/*.{jpg,JPG,png,PNG}',
   { eager: true, import: 'default' }
 )
 const _vipPara2 = import.meta.glob<string>(
@@ -131,10 +131,13 @@ export interface Unit {
   subGroupLabel?: string
   gallery: string[]
   guests: number
+  guestsLabel?: string
   rooms: number
   beds: number
   bathrooms?: number
   sqm?: number
+  description?: string
+  amenities?: string[]
 }
 
 export interface Cabin {
@@ -165,22 +168,22 @@ const standardBookingCards: BookingCard[] = [
   {
     icon: 'deposit',
     title: 'Seña para confirmar',
-    body: 'Se abona el 50% del total por transferencia bancaria para confirmar la reserva.',
+    body: 'Se abona el 30% del total por transferencia bancaria para confirmar la reserva.',
   },
   {
     icon: 'balance',
     title: 'Saldo al ingreso',
-    body: 'El 50% restante se abona al momento del check-in, en efectivo o transferencia bancaria.',
+    body: 'El 70% restante se abona al momento del check-in, en efectivo. Consultar otros medios de pago.',
   },
   {
     icon: 'cancel',
     title: 'Política de cancelación',
-    body: 'Con más de 15 días de anticipación: devolución de la seña. En temporada alta no hay reembolso.',
+    body: 'La seña no es reembolsable. La fecha puede modificarse con un mes de anticipación y está sujeta a disponibilidad. En caso de cancelación, el valor de la seña podrá utilizarse para una futura estadía.',
   },
   {
     icon: 'minstay',
     title: 'Estadía mínima',
-    body: 'Temporada alta (diciembre–marzo): mínimo 7 noches. Temporada baja y media: sin mínimo requerido.',
+    body: 'Temporada de verano: mínimo 7 noches (consultar más opciones). Temporada baja y media: mínimo 2 noches.',
   },
 ]
 
@@ -196,28 +199,27 @@ export const cabins: Cabin[] = [
   {
     id: 'mimmo-i',
     name: 'Mimmo I',
-    subLabel: '5 Cabañas',
-    tagline: 'Cinco cabañas en el bosque de Las Gaviotas, a 350 metros del mar y 100 del centro de Mar Azul.',
+    subLabel: '9 Cabañas',
+    tagline: 'Nueve cabañas de distintas capacidades en Mar Azul, a 350 metros del mar y 100 del centro.',
     location: 'Calle 34 y Copacobana, Mar Azul',
-    description: 'Cabañas y chalets en el bosque de Las Gaviotas, a 350 m de la playa y 100 m del centro.',
+    description: '9 cabañas en el bosque de Mar Azul, a 350 m de la playa y 100 m del centro.',
     fullDescription:
-      'Mimmo I es un complejo de 5 cabañas de distintas capacidades, ubicado en Calle 34 y Copacobana, en el bosque de Las Gaviotas, Mar Azul. A 350 metros de la playa y 100 del centro comercial, es una opción ideal para familias y parejas que buscan comodidad, entorno natural y fácil acceso.',
+      'Mimmo I es un complejo de 9 cabañas de distintas capacidades, ubicado en Calle 34 y Copacobana, Mar Azul. A 350 metros de la playa y 100 del centro comercial, es una opción ideal para familias y parejas que buscan comodidad, entorno natural y fácil acceso.',
     image: sortImages(_mimmoFachada)[0],
     video: mimmoVideo,
-    amenities: ['WiFi', 'Parrilla Individual', 'Sector de estacionamiento'],
+    amenities: ['WiFi', 'Parrilla Individual', 'Sector de estacionamiento', 'Vajilla completa', 'Cafetera eléctrica', 'Tostadora', 'Pava', 'Microondas'],
     featured: true,
     mapUrl: 'https://www.google.com/maps?q=Calle+34+y+Copacobana+Mar+Azul+Buenos+Aires&output=embed',
     rating: 4.2,
     contactItems: [
       { type: 'instagram', label: '@cabanas.mimmo',          url: 'https://instagram.com/cabanas.mimmo' },
       { type: 'whatsapp',  label: '+54 9 11 6757-3390',     url: 'https://wa.me/5491167573390' },
-      { type: 'facebook',  label: 'Facebook',                url: 'https://www.facebook.com/cabaniasmimmo/' },
       { type: 'email',     label: 'cabaniasmimmo@gmail.com', url: 'mailto:cabaniasmimmo@gmail.com' },
       { type: 'map',       label: 'Calle 34 y Copacobana, Mar Azul', url: 'https://maps.google.com/?q=Calle+34+y+Copacobana+Mar+Azul+Buenos+Aires+Argentina' },
       { type: 'tiktok',   label: '@complejos_del_mar',       url: 'https://tiktok.com/@complejos_del_mar' },
     ],
     infoCards: [
-      { icon: 'clock',    title: 'Check-in y check-out',    body: 'Ingreso a partir de las 16:00 hs. Salida hasta las 09:00 hs sin excepción en temporada alta.' },
+      { icon: 'clock',    title: 'Check-in y check-out',    body: 'Ingreso a partir de las 16:00 hs. Salida hasta las 09:00 hs sin excepción en temporada alta. Resto del año, consultar.' },
       { icon: 'pets',     title: 'Pet friendly',             body: 'Mascotas aceptadas con cargo único de $100.000 por estadía (fumigación y limpieza de acolchados). Informar al reservar.' },
       { icon: 'linen',    title: 'Ropa de cama incluida',   body: 'Sábanas en todas las camas según cantidad de huéspedes. Recambio de toallas los miércoles, y los sábados en estadías de quincena.' },
       { icon: 'distance', title: 'Distancias clave',         body: 'Playa Blue Beach: 350 m · Centro Mar Azul: 100 m · Mar de las Pampas: 500 m · Villa Gesell: 4 km.' },
@@ -233,27 +235,27 @@ export const cabins: Cabin[] = [
       },
       {
         id: 'mi-d2',
-        name: 'Cabaña 2 ambientes confort',
+        name: 'Cabaña Confort',
         gallery: sortImages(_mimmoD2),
-        guests: 5, rooms: 2, beds: 4, bathrooms: 2, sqm: 60,
+        guests: 5, guestsLabel: '4-5', rooms: 2, beds: 4, bathrooms: 2, sqm: 60,
       },
       {
         id: 'mi-d3',
-        name: 'Cabaña 2 ambientes',
+        name: 'Cabaña 2 ambientes Planta Baja',
         gallery: sortImages(_mimmoD3),
         guests: 3, rooms: 2, beds: 2, bathrooms: 1, sqm: 40,
       },
       {
         id: 'mi-d4',
-        name: 'Cabaña 2 ambientes cucheta',
+        name: 'Cabaña 2 ambientes Planta Alta',
         gallery: sortImages(_mimmoD4),
         guests: 4, rooms: 2, beds: 3, bathrooms: 1, sqm: 40,
       },
       {
         id: 'mi-d5',
-        name: 'Cabaña 2 ambientes clásica',
+        name: 'Cabaña Clásica',
         gallery: sortImages(_mimmoD5),
-        guests: 4, rooms: 2, beds: 2, bathrooms: 1, sqm: 42,
+        guests: 4, guestsLabel: '3-4', rooms: 2, beds: 2, bathrooms: 1, sqm: 42,
       },
     ],
   },
@@ -262,15 +264,15 @@ export const cabins: Cabin[] = [
   {
     id: 'mimmo-ii',
     name: 'Mimmo II',
-    subLabel: '1 Cabaña',
-    tagline: 'Una cabaña privada de dos plantas con pileta propia, a 300 metros del mar y 50 del centro de Mar Azul.',
+    subLabel: '3 Cabañas',
+    tagline: '3 cabañas privadas de dos plantas con pileta y parque, a 300 metros del mar y 50 metros del centro de Mar Azul.',
     location: 'Calle 33 y Copacobana, Mar Azul',
-    description: 'Cabaña de 2 plantas con pileta propia, a 300 m de la playa y 50 m del centro de Mar Azul.',
+    description: '3 cabañas privadas de dos plantas con pileta propia, a 300 m del mar y 50 m del centro de Mar Azul.',
     fullDescription:
-      'Mimmo II cuenta con una cabaña de 2 plantas ubicada en Calle 33 y Copacobana, Las Gaviotas, Mar Azul. A 300 metros del mar y 50 metros del centro comercial, es perfecta para familias que quieren un espacio íntimo y completo con parque y pileta propia.',
+      'Mimmo II cuenta con 3 cabañas privadas de dos plantas ubicadas en Calle 33 y Copacobana, Las Gaviotas, Mar Azul. A 300 metros del mar y 50 metros del centro comercial, son perfectas para familias que buscan un espacio íntimo y completo con parque y pileta propia.',
     image: sortImages(_mimmoIICabana)[0],
     video: mimmoIIVideo,
-    amenities: ['WiFi', 'Pileta Compartida', 'Parrilla Individual', 'Sector de estacionamiento'],
+    amenities: ['WiFi', 'Pileta Compartida', 'Parrilla Individual', 'Sector de estacionamiento', 'Vajilla completa', 'Cafetera eléctrica', 'Tostadora', 'Pava', 'Microondas'],
     mapUrl: 'https://www.google.com/maps?q=Calle+33+y+Copacobana+Mar+Azul+Buenos+Aires&output=embed',
     rating: 4.2,
     contactItems: [
@@ -282,9 +284,9 @@ export const cabins: Cabin[] = [
       { type: 'tiktok',   label: '@complejos_del_mar',       url: 'https://tiktok.com/@complejos_del_mar' },
     ],
     infoCards: [
-      { icon: 'clock',    title: 'Check-in y check-out',    body: 'Ingreso a partir de las 16:00 hs. Salida hasta las 09:00 hs sin excepción en temporada alta.' },
+      { icon: 'clock',    title: 'Check-in y check-out',    body: 'Ingreso a partir de las 16:00 hs. Salida hasta las 09:00 hs sin excepción en temporada alta. Resto del año, consultar.' },
       { icon: 'pets',     title: 'Pet friendly',             body: 'Mascotas aceptadas con cargo único de $100.000 por estadía (fumigación y limpieza). Informar al reservar.' },
-      { icon: 'pool',     title: 'Pileta de uso exclusivo',  body: 'La cabaña cuenta con pileta privada de 1,30 m de profundidad, de uso exclusivo para los huéspedes.' },
+      { icon: 'pool',     title: 'Pileta de uso exclusivo',  body: 'Cada cabaña cuenta con pileta privada de 1,30 m de profundidad, de uso exclusivo para los huéspedes.' },
       { icon: 'distance', title: 'Distancias clave',         body: 'Playa: 300 m · Centro de Mar Azul: 50 m · Mar de las Pampas: 400 m · Villa Gesell: 4 km.' },
     ],
     offer: mimmoOffer,
@@ -294,7 +296,7 @@ export const cabins: Cabin[] = [
         id: 'mii-c1',
         name: 'Cabaña Mimmo II',
         gallery: sortImages(_mimmoIICabana),
-        guests: 4, rooms: 3, beds: 3, bathrooms: 2, sqm: 70,
+        guests: 4, guestsLabel: '3-4', rooms: 3, beds: 3, bathrooms: 2, sqm: 70,
       },
     ],
   },
@@ -306,13 +308,13 @@ export const cabins: Cabin[] = [
     subLabel: 'Azahar I · Azahar II',
     tagline: 'Dos casas independientes entre los pinos de Mar de las Pampas, a dos cuadras del centro y cinco del mar.',
     location: 'Juan de Garay 500, Mar de las Pampas',
-    description: 'Dos casas en pleno bosque de Mar de las Pampas, a 2 cuadras del centro y 5 cuadras del mar.',
+    description: 'Dos casas independientes en el bosque de Mar de las Pampas, a dos cuadras del centro y cinco del mar.',
     fullDescription:
-      'Casas Azahar son dos casas independientes en Juan de Garay 500 y Av. Cruz del Sur, en el bosque de Mar de las Pampas. A dos cuadras del centro y cinco del mar, ofrecen privacidad, naturaleza y una atmósfera difícil de encontrar en la costa.',
+      'Casas Azahar son dos casas independientes en el bosque de Mar de las Pampas, ubicadas en Juan de Garay 500 y Av. Cruz del Sur. A dos cuadras del centro y cinco del mar, ofrecen privacidad, naturaleza y una atmósfera difícil de encontrar en la costa.',
     image: sortImages(_azaharI)[0],
     video: azaharVideo,
     videoScale: 1.6,
-    amenities: ['WiFi', 'Jardín Privado', 'Parrilla Individual', 'Sector de estacionamiento', 'Aire Acondicionado'],
+    amenities: ['WiFi', 'Jardín Privado', 'Parrilla Individual', 'Sector de estacionamiento', 'Aire Acondicionado', 'Vajilla completa', 'Cafetera eléctrica', 'Tostadora', 'Pava', 'Microondas'],
     featured: true,
     mapUrl: 'https://www.google.com/maps?q=-37.3224945,-57.0233993&output=embed',
     rating: 4.3,
@@ -326,7 +328,7 @@ export const cabins: Cabin[] = [
       { type: 'tiktok',   label: '@complejos_del_mar',             url: 'https://tiktok.com/@complejos_del_mar' },
     ],
     infoCards: [
-      { icon: 'clock',    title: 'Check-in y check-out', body: 'Ingreso a partir de las 16:00 hs. Salida hasta las 09:00 hs.' },
+      { icon: 'clock',    title: 'Check-in y check-out', body: 'Ingreso a partir de las 16:00 hs. Salida hasta las 09:00 hs sin excepción en temporada alta. Resto del año, consultar.' },
       { icon: 'distance', title: 'Distancias clave',      body: 'Centro de Mar de las Pampas: 2 cuadras · Mar: 5 cuadras.' },
       { icon: 'family',   title: 'Ideal para grupos',     body: 'Casa Azahar I tiene capacidad para hasta 10 personas en 3 plantas, ideal para grupos familiares numerosos.' },
     ],
@@ -351,15 +353,15 @@ export const cabins: Cabin[] = [
   {
     id: 'los-amigos',
     name: 'Los Amigos',
-    subLabel: 'Casa · Depto · Dúplex',
-    tagline: 'Tres cabañas independientes rodeadas de arboleda en Mar Azul, a seis cuadras del mar y cuatro del centro.',
+    subLabel: '4 Unidades',
+    tagline: 'Cuatro unidades independientes rodeadas de arboleda en Mar Azul, a seis cuadras del mar y cuatro del centro.',
     location: 'Mar Azul, Buenos Aires',
-    description: 'Cabañas independientes rodeadas de arboleda, a 6 cuadras del mar y 4 cuadras del centro.',
+    description: '4 unidades independientes rodeadas de arboleda, a 6 cuadras del mar y 4 cuadras del centro.',
     fullDescription:
-      'Los Amigos es un complejo de cabañas independientes rodeadas de una hermosa arboleda en Mar Azul, a seis cuadras del mar y cuatro de la zona comercial. Cuenta con tres unidades de distintas capacidades para grupos de 4 a 6 personas.',
+      'Los Amigos es un complejo de 4 unidades independientes rodeadas de una hermosa arboleda en Mar Azul, a seis cuadras del mar y cuatro de la zona comercial, para grupos de 4 a 6 personas.',
     image: sortImages(_amigosFachada)[0],
     video: amigosVideo,
-    amenities: ['WiFi', 'Parrilla Individual', 'Sector de estacionamiento', 'Aire Acondicionado'],
+    amenities: ['WiFi', 'Parrilla Individual', 'Sector de estacionamiento', 'Aire Acondicionado', 'Vajilla completa', 'Cafetera eléctrica', 'Tostadora', 'Pava', 'Microondas'],
     mapUrl: 'https://www.google.com/maps?q=Calle+33+Mar+Azul+Buenos+Aires+Argentina&output=embed',
     rating: 4.2,
     contactItems: [
@@ -369,7 +371,7 @@ export const cabins: Cabin[] = [
       { type: 'tiktok',   label: '@complejos_del_mar',     url: 'https://tiktok.com/@complejos_del_mar' },
     ],
     infoCards: [
-      { icon: 'clock',    title: 'Check-in y check-out', body: 'Ingreso a partir de las 16:00 hs. Salida hasta las 09:00 hs.' },
+      { icon: 'clock',    title: 'Check-in y check-out', body: 'Ingreso a partir de las 16:00 hs. Salida hasta las 09:00 hs sin excepción en temporada alta. Resto del año, consultar.' },
       { icon: 'pets',     title: 'Pet friendly',          body: 'Mascotas aceptadas con cargo único de $100.000 por estadía. Informar al momento de la reserva.' },
       { icon: 'distance', title: 'Distancias clave',      body: 'Mar: 6 cuadras · Centro de Mar Azul: 4 cuadras.' },
     ],
@@ -379,12 +381,13 @@ export const cabins: Cabin[] = [
         id: 'la-d1',
         name: 'Casa',
         gallery: sortImages(_amigosD1),
-        guests: 6, rooms: 3, beds: 3, bathrooms: 1, sqm: 44,
+        guests: 6, rooms: 2, beds: 3, bathrooms: 1, sqm: 44,
+        description: 'Para hasta 6 personas, con 2 dormitorios, 3 camas (2 cuchetas y 1 matrimonial) y 1 baño, en 44 m².',
       },
       {
         id: 'la-d2',
         name: 'Departamento',
-        gallery: sortImages(_amigosD2),
+        gallery: sortImages(_amigosD2).filter((_, i) => i !== 4),
         guests: 4, rooms: 2, beds: 3, bathrooms: 1, sqm: 46,
       },
       {
@@ -405,9 +408,9 @@ export const cabins: Cabin[] = [
     location: 'Santa Clara del Mar',
     description: 'La experiencia premium: cabañas privadas para cada tamaño de grupo, en Santa Clara del Mar.',
     fullDescription:
-      'Cabañas VIP ofrece cuatro tipos de cabaña totalmente privadas en Santa Clara del Mar, para grupos de 2 a 7 personas. Cada unidad es completamente independiente, con todos los servicios para una estadía cómoda y sin apuros.',
+      'Cabañas VIP ofrece 15 cabañas totalmente privadas en Santa Clara del Mar, distribuidas en 4 tipos para grupos de 2 a 7 personas. Cada unidad es completamente independiente, con todos los servicios para una estadía cómoda y sin apuros.',
     image: vipPortada,
-    amenities: ['Jacuzzi Privado', 'WiFi Premium', 'Vista Panorámica', 'Servicio de Limpieza', 'Terraza', 'Minibar'],
+    amenities: ['Jacuzzi Privado', 'WiFi Premium', 'Vista Panorámica', 'Servicio de Limpieza', 'Terraza', 'Minibar', 'Vajilla completa', 'Cafetera eléctrica', 'Tostadora', 'Pava', 'Microondas'],
     featured: true,
     mapUrl: 'https://www.google.com/maps?q=Av+Menton+1188+Santa+Clara+del+Mar+Buenos+Aires+Argentina&output=embed',
     rating: 4.0,
@@ -421,7 +424,7 @@ export const cabins: Cabin[] = [
       { type: 'tiktok',   label: '@complejos_del_mar',                  url: 'https://tiktok.com/@complejos_del_mar' },
     ],
     infoCards: [
-      { icon: 'clock',  title: 'Check-in y check-out',    body: 'Ingreso a partir de las 16:00 hs. Salida hasta las 09:00 hs.' },
+      { icon: 'clock',  title: 'Check-in y check-out',    body: 'Ingreso a partir de las 16:00 hs. Salida hasta las 09:00 hs sin excepción en temporada alta. Resto del año, consultar.' },
       { icon: 'info',   title: 'Unidades completamente privadas', body: 'Cada cabaña tiene acceso independiente y no comparte espacios con otros huéspedes.' },
     ],
     bookingCards: [
@@ -455,7 +458,7 @@ export const cabins: Cabin[] = [
         id: 'vip-p7',
         name: 'Para 6/7 personas',
         gallery: sortImages(_vipPara7),
-        guests: 7, rooms: 3, beds: 6, bathrooms: 2, sqm: 78,
+        guests: 7, rooms: 3, beds: 6, bathrooms: 1, sqm: 78,
       },
     ],
   },
@@ -464,15 +467,15 @@ export const cabins: Cabin[] = [
   {
     id: 'chacras',
     name: 'Chacras del Mar',
-    subLabel: 'Chacras I · Chacras II',
+    subLabel: 'Chacras 23 · Chacras 24',
     tagline: 'Acceso exclusivo en 4×4 por playa, con piscinas, spa, guardavidas y vistas al mar en Mar Azul.',
     location: 'Mar Azul (acceso por playa en 4×4)',
     description: 'Departamentos de planta alta con acceso en 4×4 por playa, con piscinas, spa y servicios premium.',
     fullDescription:
       'Chacras del Mar son dos departamentos en planta alta ubicados en Mar Azul, con acceso exclusivo en vehículo 4×4 por playa. Un complejo único en su tipo, pensado para quienes valoran una experiencia de playa diferente y completa.',
-    image: sortImages(_chacrasI)[0],
+    image: sortImages(_chacrasII)[0],
     video: chacrasVideo,
-    amenities: ['WiFi', 'Pileta Compartida', 'Spa', 'Servicio de Limpieza', 'Parrilla', 'Guardavidas'],
+    amenities: ['WiFi (complejo y unidad)', 'Pileta Climatizada', 'Spa & Sauna', 'Servicio de Limpieza', 'Parrilla', 'Guardavidas', 'Blanquería', 'Vajilla completa', 'Cafetera eléctrica', 'Tostadora', 'Pava', 'Microondas'],
     mapUrl: 'https://www.google.com/maps?q=Chacras+del+Mar+Mar+Azul+Buenos+Aires+Argentina&output=embed',
     rating: 4.4,
     contactItems: [
@@ -485,24 +488,26 @@ export const cabins: Cabin[] = [
       { type: 'tiktok',   label: '@complejos_del_mar',         url: 'https://tiktok.com/@complejos_del_mar' },
     ],
     infoCards: [
-      { icon: 'access', title: 'Acceso exclusivo en 4×4',       body: 'El ingreso al complejo es en vehículo 4×4 por playa. No apto para vehículos convencionales.' },
-      { icon: 'clock',  title: 'Check-in y check-out',           body: 'Ingreso a partir de las 16:00 hs. Salida hasta las 09:00 hs.' },
+      { icon: 'access', title: 'Acceso exclusivo en 4×4',       body: 'El ingreso al complejo es en vehículo 4×4 por playa. No apto para vehículos convencionales. Consultar por servicios de transfer disponibles.' },
+      { icon: 'clock',  title: 'Check-in y check-out',           body: 'Ingreso a partir de las 16:00 hs. Salida hasta las 09:00 hs sin excepción en temporada alta. Resto del año, consultar.' },
       { icon: 'family', title: 'Guardavidas certificados',        body: 'Guardavidas certificados por Cruz Roja en playa y piscinas durante toda la temporada.' },
       { icon: 'info',   title: 'Recreación en temporada',         body: 'En verano: actividades recreativas para chicos y propuestas deportivas y sociales programadas.' },
     ],
     bookingCards: standardBookingCards,
     units: [
       {
-        id: 'ch-i',
-        name: 'Chacras I',
-        gallery: sortImages(_chacrasI),
-        guests: 6, rooms: 3, beds: 4, bathrooms: 2, sqm: 70,
-      },
-      {
         id: 'ch-ii',
-        name: 'Chacras II',
+        name: 'Chacras 23',
         gallery: sortImages(_chacrasII),
         guests: 6, rooms: 3, beds: 3, bathrooms: 2, sqm: 55,
+        amenities: ['Fabricadora de hielo', 'Cava de vinos'],
+      },
+      {
+        id: 'ch-i',
+        name: 'Chacras 24',
+        gallery: sortImages(_chacrasI),
+        guests: 6, rooms: 3, beds: 4, bathrooms: 2, sqm: 70,
+        amenities: ['Fabricadora de hielo', 'Cava de vinos', 'Lavarropas'],
       },
     ],
   },
