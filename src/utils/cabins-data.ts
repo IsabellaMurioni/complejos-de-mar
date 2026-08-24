@@ -82,6 +82,10 @@ const _vipPara7 = import.meta.glob<string>(
   '/src/assets/complexes/cabanas-vip/para-7/gallery/*.{jpg,JPG,png,PNG}',
   { eager: true, import: 'default' }
 )
+const _vipJamaica = import.meta.glob<string>(
+  '/src/assets/complexes/cabanas-vip/casa-jamaica/gallery/*.{jpg,JPG,png,PNG}',
+  { eager: true, import: 'default' }
+)
 
 function sortImages(map: Record<string, string>): string[] {
   return Object.entries(map)
@@ -403,12 +407,12 @@ export const cabins: Cabin[] = [
   {
     id: 'cabanas-vip',
     name: 'Cabañas VIP',
-    subLabel: 'Para 2 · 3 · 4 · 6/7 personas',
+    subLabel: 'Para 2 · 3 · 4 · 5 · 6/7 personas',
     tagline: 'Cabañas completamente privadas en Santa Clara del Mar para grupos de 2 a 7 personas.',
     location: 'Santa Clara del Mar',
     description: 'La experiencia premium: cabañas privadas para cada tamaño de grupo, en Santa Clara del Mar.',
     fullDescription:
-      'Cabañas VIP ofrece 15 cabañas totalmente privadas en Santa Clara del Mar, distribuidas en 4 tipos para grupos de 2 a 7 personas. Cada unidad es completamente independiente, con todos los servicios para una estadía cómoda y sin apuros.',
+      'Cabañas VIP ofrece 15 cabañas totalmente privadas en Santa Clara del Mar, distribuidas en 4 tipos para grupos de 2 a 7 personas, más Casa Jamaica: una casa individual aparte del complejo principal, con acceso a la pileta y todas las instalaciones. Cada unidad es completamente independiente, con todos los servicios para una estadía cómoda y sin apuros.',
     image: vipPortada,
     amenities: ['Jacuzzi Privado', 'WiFi Premium', 'Vista Panorámica', 'Servicio de Limpieza', 'Terraza', 'Minibar', 'Vajilla completa', 'Cafetera eléctrica', 'Tostadora', 'Pava', 'Microondas'],
     featured: true,
@@ -459,6 +463,13 @@ export const cabins: Cabin[] = [
         name: 'Para 6/7 personas',
         gallery: sortImages(_vipPara7),
         guests: 7, rooms: 3, beds: 6, bathrooms: 1, sqm: 78,
+      },
+      {
+        id: 'vip-jamaica',
+        name: 'Casa Jamaica',
+        gallery: sortImages(_vipJamaica),
+        guests: 5, rooms: 2, beds: 4, bathrooms: 1,
+        description: 'Casa individual aparte del complejo principal, para hasta 5 personas. Cuenta con 1 cama matrimonial y 3 camas individuales, 1 baño, y acceso completo a la pileta y todas las instalaciones del complejo.',
       },
     ],
   },
